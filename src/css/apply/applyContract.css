@@ -1,0 +1,38 @@
+.mui-table-view-cell {
+	padding: 10px 22px 10px 22px;
+}
+
+.mui-table-view-cell.mui-collapse .mui-collapse-content {
+	padding: 1px 6px;
+	border-bottom: 1px #e8e5e5 solid;
+	color: #333333;
+	font-size: 15px;
+	background-color: #FAFAFA;
+}
+
+.mui-table-view-cell:after {
+	background-color: #fff;
+}
+
+.mui-table-view-cell>a:not(.mui-btn) {
+	margin: -10px -25px;
+}
+
+.mui-table-view-cell.mui-active {
+	background-color: #fff;
+}
+
+.mui-navigate-right span {
+	color: #8f8f94;
+}
+
+.mui-collapse-content input {
+	color: #555555;
+}
+
+.mui-collapse-content textarea {
+	background-color: #FAFAFA;
+}
+.mui-navigate-right .star-red{
+	color: red;
+}

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>Hello MUI</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<!--标准mui.css-->
+		<link rel="stylesheet" href="../../dist/css/mui.min.css">
+		<link rel="stylesheet" href="../css/apply/applyContract.css" />
+		<link href="../../dist/css/mui.picker.css" rel="stylesheet" />
+		<link href="../../dist/css/mui.poppicker.css" rel="stylesheet" />
+		<!--App自定义的css-->
+		<!--<link rel="stylesheet" type="text/css" href="../css/app.css"/>-->
+		<script src="../../dist/js/mui.min.js"></script>
+		<script src="../../dist/js/mui.picker.js"></script>
+		<script src="../../dist/js/mui.poppicker.js"></script>
+		<!-- 开发环境版本，包含了有帮助的命令行警告 -->
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<script src="../js/app.js"></script>
+	</head>
+	<body>
+
+		<header class="mui-bar mui-bar-nav">
+			<!-- <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a> -->
+			<h1 class="mui-title">劳务合同</h1>
+		</header>
+		<div class="mui-content" id="divMuiContent">
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell mui-collapse mui-active">
+					<a class="mui-navigate-right" href="#"><span class="mui-icon mui-icon-contact"></span>员工信息</a>
+					<div class="mui-collapse-content">
+						<div class="mui-input-row">
+							<label>员工编号</label>
+							<!-- <span style="color:red">*&nbsp;</span> -->
+							<label>dfsfdf </label>
+						</div>
+					</div>
+					<div class="mui-collapse-content">
+						<div class="mui-input-row">
+							<label>员工姓名</label>
+							<label> </label>
+						</div>
+					</div>
+					<div class="mui-collapse-content">
+						<div class="mui-input-row">
+							<label>员工职级</label>
+							<label> </label>
+						</div>
+					</div>
+					<div class="mui-collapse-content">
+						<div class="mui-input-row">
+							<label>员工职位</label>
+							<label> </label>
+						</div>
+					</div>
+					<div class="mui-collapse-content">
+						<div class="mui-input-row">
+							<label>入司时间</label>
+							<label> </label>
+						</div>
+					</div>
+					<div class="mui-collapse-content">
+						<div class="mui-input-row">
+							<label>所属公司</label>
+							<label> </label>
+						</div>
+					</div>
+					<div class="mui-collapse-content">
+						<div class="mui-input-row">
+							<label>签约类型</label>
+							<label> </label>
+						</div>
+					</div>
+					<div class="mui-collapse-content">
+						<div class="mui-input-row">
+							<label>合同名称</label>
+							<label> </label>
+						</div>
+					</div>
+					<div class="mui-collapse-content">
+						<div class="mui-input-row">
+							<label>所属部门</label>
+							<textarea id="textarea" rows="5" disabled="disabled"></textarea>
+							<!-- placeholder="多行文本框" -->
+						</div>
+					</div>
+				</li>
+				<div style="height: 10px;background-color: #EFEFF4;"></div>
+				<li class="mui-table-view-cell mui-collapse">
+					<a class="mui-navigate-right" href="#"><span class="mui-icon mui-icon-compose"></span>新合同信息</a>
+					<div class="mui-collapse-content">
+						<div class="mui-input-row" v-on:click="onNewSigningType">
+							<label class="mui-navigate-right"><span class="star-red">*&nbsp;</span>新签约类型</label>
+							<label> {{newSigningType}}</label>
+
+						</div>
+					</div>
+					<div class="mui-collapse-content">
+						<div class="mui-input-row">
+							<label class="mui-navigate-right"><span class="star-red">*&nbsp;</span>新合同名称</label>
+							<label> </label>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</body>
+	<script src="../js/apply/applyData.js"></script>
+	<script src="../js/apply/applyContract.js"></script>
+</html>

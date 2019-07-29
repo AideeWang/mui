@@ -1,0 +1,107 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>登录</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<link href="dist/css/mui.min.css" rel="stylesheet" />
+		<link href="dist/css/app.css" rel="stylesheet" />
+		<link href="dist/css/icons-extra.css" rel="stylesheet" />
+		<script src="dist/js/mui.min.js"></script>
+		<script src="src/js/app.js"></script>
+		<!-- 开发环境版本，包含了有帮助的命令行警告 -->
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<!--钉钉 jsapi-->
+		<script src="https://g.alicdn.com/dingding/dingtalk-jsapi/2.7.13/dingtalk.open.js"></script>
+	</head>
+	<body>
+		<div id="div-main-page">
+		</div>
+		<script type="text/javascript">
+			mui.init();
+
+			var _config, model, code, userid;
+			//获取钉钉鉴权 config
+			MuiAjax('login/getconfig', null, function(data) {
+				console.log(JSON.parse(data));
+				var configData = JSON.parse(data);
+
+				_config = {
+					agentId: configData.agentId,
+					corpId: configData.corpId,
+					timeStamp: configData.timeStamp,
+					nonceStr: configData.nonceStr,
+					signature: configData.signature
+				};
+				model = {
+					jsapi_ticket: configData.jsapi_ticket,
+					noncestr: configData.nonceStr,
+					timestamp: configData.timeStamp,
+					url: configData.url
+				};
+				sessionStorage.setItem("_config", _config);
+				sessionStorage.setItem("model", model);
+			}, 'get', false);
+
+			dd.config({
+				agentId: _config.agentId,
+				corpId: _config.corpId,
+				timeStamp: _config.timeStamp,
+				nonceStr: _config.nonceStr,
+				signature: _config.signature,
+				type: 0,
+				jsApiList: [
+					'runtime.info',
+					'biz.contact.choose',
+					'device.notification.confirm',
+					'device.notification.alert',
+					'device.notification.prompt',
+					'biz.ding.post',
+					'biz.util.openLink',
+				]
+			});
+
+			dd.ready(function() {
+				// dd.ready参数为回调函数，在环境准备就绪时触发，jsapi的调用需要保证在该回调函数触发后调用，否则无效。
+				dd.runtime.permission.requestAuthCode({
+					corpId: _config.corpId,
+					onSuccess: function(result) {
+						//(result.code)
+						code = result.code;
+						MuiAjax('login/GetDingDingUserId?Code=' + code, null, function(data) {
+							userid = data.userid;
+							//alert("userId: " + userid);
+							sessionStorage.setItem("userid", userid);
+							mui.openWindow({
+								url: 'src/page/main.html',
+								id: 'main'
+
+							});
+						}, 'get', false);
+					},
+					onFail: function(err) {}
+
+				});
+			});
+			dd.error(function(error) {
+				alert('dd error: ' + JSON.stringify(error));
+			});
+
+			// mui.openWindow({
+			// 	url: 'src/page/main.html',
+			// 	id: 'main',
+			// 	// styles: {
+			// 	// 	top: '0px', //mui标题栏默认高度为45px；
+			// 	// 	bottom: '0px' //默认为0px，可不定义；
+			// 	// }
+			// });
+			//mui("#div-main-page").load("src/page/main.html");
+		</script>
+
+	</body>
+
+</html>
