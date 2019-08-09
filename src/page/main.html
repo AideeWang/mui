@@ -15,6 +15,7 @@
 		<script src="../../dist/js/mui.min.js"></script>
 		<!-- 开发环境版本，包含了有帮助的命令行警告 -->
 		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<script src="../js/app.js?page=4"></script>
 	</head>
 
 	<body>
@@ -25,10 +26,10 @@
 		<div id="main-content">
 			<nav class="mui-bar mui-bar-tab">
 				<a class="mui-tab-item mui-active" href="#tabbar">
-					<span class="mui-icon mui-icon-home"><span class="mui-badge">9</span></span>
+					<span class="mui-icon mui-icon-home"><span class="mui-badge">{{itemCount}}</span></span>
 					<span class="mui-tab-label">待办</span>
 				</a>
-				<a class="mui-tab-item" href="#tabbar-apply-contact" >
+				<a class="mui-tab-item" href="#tabbar-apply-contact">
 					<span class="mui-icon mui-icon-extra mui-icon-extra-class"></span>
 					<span class="mui-tab-label">审批</span>
 				</a>
@@ -43,23 +44,69 @@
 			</nav>
 			<div class="mui-content">
 				<div id="tabbar" class="mui-control-content mui-active">
-					<div class="title">这是div模式选项卡中的第1个子页面.</div>
+					<div class="titleSearch">
+						<div class="mui-input-row mui-search">
+							<input type="search" class="mui-input-clear" placeholder="" v-model="txtSearch">
+						</div>
+					</div>
+					<ul class="mui-table-view mui-table-view-striped mui-table-view-condensed">
+<!-- 						<li class="mui-table-view-cell">
+							<a href="applyContract.html">
+								<div class="mui-slider-cell">
+									<div class="oa-contact-cell mui-table">
+										<div class="oa-contact-avatar mui-table-cell">
+										</div>
+										<div class="oa-contact-content mui-table-cell">
+											<img class="mui-media-object mui-pull-left" src="../../image/contract.png">
+											<div class="mui-clearfix">
+												<h4 class="oa-contact-name">劳务合同审批</h4>
+												<span class="oa-contact-position mui-h6">贺冬波</span>
+											</div>
+											<p class="oa-contact-email mui-h6">
+												[研发5组 贺冬波]提交的上海职员预付佣金审批](贺冬波 / AA76243)
+											</p>
+										</div>
+									</div>
+								</div>
+							</a>
+						</li> -->
+						<li v-for="item in searchWorklistItemList" class=" approval-tableli">
+							<a v-bind:href="item.URL" >
+								<div class="mui-slider-cell">
+									<div class="oa-contact-cell mui-table">
+										<div class="oa-contact-avatar mui-table-cell">
+										</div>
+										<div class="oa-contact-content mui-table-cell">
+											<img class="mui-media-object mui-pull-left" src="../../image/contract.png">
+											<div class="mui-clearfix">
+												<h4 class="oa-contact-name">{{item.ProcessName}}</h4>
+												<span class="oa-contact-position mui-h6">{{item.CurActivityName}}</span>
+											</div>
+											<p class="oa-contact-email mui-h6">
+												{{item.Folio}}
+											</p>
+										</div>
+									</div>
+								</div>
+							</a>
+						</li>
+					</ul>
 				</div>
 				<div id="tabbar-apply-contact" class="mui-control-content">
-					 			<div class="title">
-					 	人事流程
-					 </div>
-					 <ul class="mui-table-view">
-					 	<li class="mui-table-view-cell mui-media">
-					 		<a href="applyContract.html" >
-					 			<img class="mui-media-object mui-pull-left" src="../../image/contract.png">
-					 			<div class="mui-media-body">
-					 				劳务合同
-					 				<p class='mui-ellipsis'>员工申请劳务合同流程</p>
-					 			</div>
-					 		</a>
-					 	</li>
-<!-- 					 	<li class="mui-table-view-cell mui-media">
+					<div class="title">
+						人事流程
+					</div>
+					<ul class="mui-table-view">
+						<li class="mui-table-view-cell mui-media">
+							<a href="applyContract.html">
+								<img class="mui-media-object mui-pull-left" src="../../image/contract.png">
+								<div class="mui-media-body">
+									劳务合同
+									<p class='mui-ellipsis'>员工申请劳务合同流程</p>
+								</div>
+							</a>
+						</li>
+						<!-- 					 	<li class="mui-table-view-cell mui-media">
 					 		<a href="javascript:;">
 					 			<img class="mui-media-object mui-pull-left" src="../images/muwu.jpg">
 					 			<div class="mui-media-body">
@@ -77,8 +124,8 @@
 					 			</div>
 					 		</a>
 					 	</li> -->
-					 
-					 </ul>
+
+					</ul>
 				</div>
 				<div id="tabbar-with-contact" class="mui-control-content">
 					<div class="title">这是div模式选项卡中的第3个子页面，该页面展示一个通讯录示例.</div>
@@ -87,87 +134,18 @@
 							<div class="mui-slider-cell">
 								<div class="oa-contact-cell mui-table">
 									<div class="oa-contact-avatar mui-table-cell">
-										<img src="../images/60x60.gif" />
+										<!-- <img src="../images/60x60.gif" /> -->
 									</div>
 									<div class="oa-contact-content mui-table-cell">
+										<img class="mui-media-object mui-pull-left" src="../../image/contract.png">
+
 										<div class="mui-clearfix">
+
 											<h4 class="oa-contact-name">叶文洁</h4>
 											<span class="oa-contact-position mui-h6">董事长</span>
 										</div>
 										<p class="oa-contact-email mui-h6">
 											yewenjie@sina.com
-										</p>
-									</div>
-								</div>
-							</div>
-						</li>
-						<li class="mui-table-view-cell">
-							<div class="mui-slider-cell">
-								<div class="oa-contact-cell mui-table">
-									<div class="oa-contact-avatar mui-table-cell">
-										<img src="../images/60x60.gif" />
-									</div>
-									<div class="oa-contact-content mui-table-cell">
-										<div class="mui-clearfix">
-											<h4 class="oa-contact-name">艾AA</h4>
-											<span class="oa-contact-position mui-h6">总经理</span>
-										</div>
-										<p class="oa-contact-email mui-h6">
-											aaa@163.com
-										</p>
-									</div>
-								</div>
-							</div>
-						</li>
-						<li class="mui-table-view-cell">
-							<div class="mui-slider-cell">
-								<div class="oa-contact-cell mui-table">
-									<div class="oa-contact-avatar mui-table-cell">
-										<img src="../images/60x60.gif" />
-									</div>
-									<div class="oa-contact-content mui-table-cell">
-										<div class="mui-clearfix">
-											<h4 class="oa-contact-name">罗辑</h4>
-											<span class="oa-contact-position mui-h6">员工</span>
-										</div>
-										<p class="oa-contact-email mui-h6">
-											luoji@126.com
-										</p>
-									</div>
-								</div>
-							</div>
-						</li>
-						<li class="mui-table-view-cell">
-							<div class="mui-slider-cell">
-								<div class="oa-contact-cell mui-table">
-									<div class="oa-contact-avatar mui-table-cell">
-										<img src="../images/60x60.gif" />
-									</div>
-									<div class="oa-contact-content mui-table-cell">
-										<div class="mui-clearfix">
-											<h4 class="oa-contact-name">云天明</h4>
-											<span class="oa-contact-position mui-h6">员工</span>
-										</div>
-										<p class="oa-contact-email mui-h6">
-											ytm@163.com
-										</p>
-									</div>
-								</div>
-							</div>
-						</li>
-						<li class="mui-table-view-cell">
-							<div class="mui-slider-cell">
-								<div class="oa-contact-cell mui-table">
-									<div class="oa-contact-avatar mui-table-cell">
-										<img src="../images/60x60.gif" />
-									</div>
-									<div class="oa-contact-content mui-table-cell">
-										<div class="mui-clearfix">
-											<h4 class="oa-contact-name">史强</h4>
-											<span class="oa-contact-position mui-h6">员工</span>
-										</div>
-										<p class="oa-contact-email mui-h6">
-											shiqiang@gmail.com
 										</p>
 									</div>
 								</div>
@@ -211,19 +189,8 @@
 				</div>
 			</div>
 		</div>
-		<script type="text/javascript">
-			//mui("#tabbar-apply-contact").preload('page/applymain.html');
-			var v = new Vue({
-				el: "#main-content",
-				data: {},
-				methods: {
-					s:function(){
-						alert("assss");
-					}
-				}
-			});
-		</script>
+
 	</body>
 
-	<!-- 	<script src="../js/main.js"></script> -->
+	<script src="../js/main.js?ver=1"></script>
 </html>

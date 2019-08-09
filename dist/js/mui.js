@@ -7206,10 +7206,10 @@ Function.prototype.bind = Function.prototype.bind || function(to) {
 			}
 
 			if (!classList.contains(CLASS_ACTIVE)) { //展开时,需要收缩其他同类
-				var collapse = cell.parentNode.querySelector('.mui-collapse.mui-active');
-				if (collapse) {
-					collapse.classList.remove(CLASS_ACTIVE);
-				}
+				// var collapse = cell.parentNode.querySelector('.mui-collapse.mui-active');
+				// if (collapse) {
+				// 	collapse.classList.remove(CLASS_ACTIVE);
+				// }
 				isExpand = true;
 			}
 			classList.toggle(CLASS_ACTIVE);

@@ -3,7 +3,7 @@
 }
 
 .mui-table-view-cell.mui-collapse .mui-collapse-content {
-	padding: 1px 6px;
+	padding: 2px 6px;
 	border-bottom: 1px #e8e5e5 solid;
 	color: #333333;
 	font-size: 15px;
@@ -26,13 +26,25 @@
 	color: #8f8f94;
 }
 
-.mui-collapse-content input {
+.mui-collapse-content label {
 	color: #555555;
 }
-
+	
 .mui-collapse-content textarea {
 	background-color: #FAFAFA;
 }
 .mui-navigate-right .star-red{
 	color: red;
 }
+.mui-content-padded button{
+	/* margin-top: 20px; */
+	padding: 5px;
+    width:49%;
+}
+.mui-table-view-cell .mui-icon{
+	color: #f0ad4e;
+}
+.mui-input-row {
+	padding: 2px 6px;
+}
+	
